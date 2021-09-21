@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for contracts/MSOT.sol</title>
+    <title>Code coverage report for contracts/SOT.sol</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> MSOT.sol
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> SOT.sol
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,17 +105,17 @@
 pragma solidity ^0.8.0;
 &nbsp;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
-import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 &nbsp;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 &nbsp;
-contract MSOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
+contract SOT is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
     
     function initialize() public initializer{
-        __ERC721_init('Msot', "MSOT");
+        __ERC20_init('Sot', "SOT");
         __Ownable_init();
-        //_mint(msg.sender, 10000000 * 10 * decimals());
+        _mint(msg.sender, 10000000 * 10 * decimals());
     }
     
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner{} 
@@ -124,7 +124,7 @@ contract MSOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgra
 &nbsp;
 &nbsp;
 &nbsp;
-contract MSOT2 is MSOT{
+contract SOT2 is SOT{
     function version() pure public returns (string memory a ){
         return 'v2';
     }
