@@ -11,15 +11,17 @@ before('deploy', async function (){
 });
 
 it('deploys the Proxy of the Rentor Token', async function() {
-
+    this.timeout(500000)
     this.proxy = await hre.upgrades.deployProxy(this.Rentor, {kind: 'uups'});
+    await this.proxy.deployed();
     console.log('Rentor Proxy Deployed!')
 
 })
 
 it('Upgrades the proxy to point to a newer version of the Rentor contract', async function(){
-    
+    this.timeout(500000)
     this.upgraded_Rentor = await hre.upgrades.upgradeProxy(this.proxy, this.Rentor2)
+    await this.upgraded_Rentor.deployed();
     assert.equal(await this.upgraded_Rentor.version(), 'v2');
     console.log("Rentor Upgraded Successfully!")
 

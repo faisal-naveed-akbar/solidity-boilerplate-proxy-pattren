@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rm -f .openzeppelin/unknown-31337.json && hardhat test",
+    "test": "rm -f .openzeppelin/unknown-31337.json && hardhat test --timeout 1000000",
     "coverage": "npx hardhat coverage --testfiles 'test/*.js' --solcoverjs .solcover.js"
   },
   "author": "Saqib",
@@ -13,8 +13,12 @@
     "@openzeppelin/contracts-upgradeable": "^4.3.2",
     "@openzeppelin/hardhat-upgrades": "^1.10.0",
     "assert": "^2.0.0",
+    "axios": "^0.21.4",
+    "config": "^3.3.6",
+    "dotenv": "^10.0.0",
     "hardhat": "^2.6.4",
-    "mocha": "^9.1.1"
+    "mocha": "^9.1.1",
+    "web3": "^1.5.3"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",

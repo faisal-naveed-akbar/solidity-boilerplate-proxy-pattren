@@ -8,11 +8,14 @@ before('deploy', async function (){
     this.SotV2 = await ethers.getContractFactory('SOT2');
     this.proxy;
     this.upgraded_SOT;
+    
 });
 
 it('deploys the Proxy of the SOT Token', async function() {
 
+    this.timeout(500000)
     this.proxy = await hre.upgrades.deployProxy(this.SotV1, {kind: 'uups'}); 
+    await this.proxy.deployed();
     assert.equal(await this.proxy.name(), 'Sot')
     console.log('SOT Proxy Deployed!')
 
@@ -20,7 +23,9 @@ it('deploys the Proxy of the SOT Token', async function() {
 
 it('Upgrades the proxy to point to a newer version of the SOT Token', async function(){
     
+    this.timeout(500000)
     this.upgraded_SOT = await hre.upgrades.upgradeProxy(this.proxy, this.SotV2)
+    await this.upgraded_SOT.deployed();
     assert.equal(await this.upgraded_SOT.version(), 'v2');
     console.log("SOT Upgraded Successfully!")
 
@@ -31,6 +36,37 @@ it('deploys the proxy and the upgrade on the same address', async function(){
     console.log("The Addresses: ");
     console.log("initial SOT Address: " + this.proxy.address);
     console.log("Upgrade SOT Address: " + this.upgraded_SOT.address)
+})
+
+it('should have the name Sot', async function() {
+
+    this.timeout(500000)
+    const name = await this.proxy.name();
+    assert.equal(name, "Sot");
+
+})
+
+it('should have the symbol SOT', async function() {
+
+    this.timeout(500000)
+    const symbol = await this.proxy.symbol();
+    assert.equal(symbol, "SOT");
+
+})
+
+it('should return the balance of the passed address', async function() {
+
+    this.timeout(500000)
+    const balance = await this.proxy.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
+    console.log("The balance of this address is: ")
+    console.log(balance)
+
+})
+
+it('should return the owner of a token id', async function () {
+    this.timeout(500000)
+    console.log("The owner of token with token id 1 is: ")
+    console.log(await this.proxy.ownerOf(1))
 })
 
 
