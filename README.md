@@ -97,7 +97,9 @@ To get started with this project, follow these steps:
     `npx hardhat run scripts/UpgradeMsotProxy.js --network rinkeby`
 
 ## Adding Metadata and Minting a new SOT
-Each SOT NFT is supposed to possess specific attributes. Like the SOT's size, location etc. In addition to that, it also has an associated image and a name which differentiates it from other SOTs. Metadata is a json file consisting that information. Now,how is this metadata file associated with each SOT? Well, the metadata is always off-chain, so it can be stored either on another blockchain like IPFS or on some cloud service like cloudinary. We have used the cloudinary service to store our metadata files. The OpenSea platform access the tokenURI function of the NFT and looks for the metadata file in the link that is returned. like in our case, it returns https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/X.json where X replaces the tokenID. like [this](https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/0.json)
+Each SOT NFT is supposed to possess specific attributes. Like the SOT's size, location etc. In addition to that, it also has an associated image and a name which differentiates it from other SOTs. Metadata is a json file consisting that information. Now,how is this metadata file associated with each SOT? Well, the metadata is always off-chain, so it can be stored either on another blockchain like IPFS or on some cloud service like cloudinary. We have used the cloudinary service to store our metadata files. The OpenSea platform access the tokenURI function of the NFT and looks for the metadata file in the link that is returned. like in our case, it returns 
+`https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/X.json` 
+where X replaces the tokenID. like [this](https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/0.json)
 
 So, in order to display an SOT's metadata on OpenSea, you need to upload the metadata file on some cloud and name it such that it matches the link returned by the tokenURI function when passed the token's Id.
 
