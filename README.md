@@ -28,7 +28,7 @@ To get started with this project, follow these steps:
 
 2. Run `npm install` in the root of the repo
 
-3. Also, add a `secret.json` file in your root directory, where you'll store your wallet address, key and other sensitive data. The content should be similar to this:
+3. Add a `secret.json` file in your root directory, where you'll store your wallet address, key and other sensitive data. The content should be similar to this: (keep the content as such for now, but fill the first 5 fields before running the deploy scripts)
 
     ```
     {
