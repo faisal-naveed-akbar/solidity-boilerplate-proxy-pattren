@@ -19,11 +19,3 @@ contract MSOT is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableUpgrad
     
 }
 
-
-
-contract MSOT2 is MSOT{
-    function version() pure public returns (string memory a ){
-        return 'v2';
-    }
-}
-

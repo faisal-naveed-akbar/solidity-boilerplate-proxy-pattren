@@ -15,11 +15,3 @@ contract Profit_Distributor is Initializable, UUPSUpgradeable, OwnableUpgradeabl
 
 }
 
-
-
-contract Profit_Distributor2 is Profit_Distributor{
-    function version() pure public returns (string memory a ){
-        return 'v2';
-    }
-}
-

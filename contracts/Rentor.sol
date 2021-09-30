@@ -14,12 +14,3 @@ contract Rentor is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner{} 
 
 }
-
-
-
-contract Rentor2 is Rentor{
-    function version() pure public returns (string memory a ){
-        return 'v2';
-    }
-}
-

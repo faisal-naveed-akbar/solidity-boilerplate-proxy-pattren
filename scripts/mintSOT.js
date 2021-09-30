@@ -7,7 +7,7 @@ const PRIVATE_KEY = secret.key;
 
 // const web3 = createAlchemyWeb3(API_URL)
 const Web3 = require("web3");
-const ethNetwork = secret.urlRinkeby;
+const ethNetwork = secret.SOT_PROJECT_RINKEBY;
 
 try {
         const web3 = new Web3(new Web3.providers.HttpProvider(ethNetwork));
@@ -40,7 +40,7 @@ try {
         
             gas: 500000,
         
-            data: nftContract.methods._mint(walletAddress, 0, 0, 0).encodeABI(),
+            data: nftContract.methods.mint(walletAddress).encodeABI(),
         
           }
 
