@@ -112,7 +112,7 @@ It will take some time, your token will be minted, and you will be able to view 
 ![SOT Metadata](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632994755/images/SOT_Metadata.png)
 
 ## Defining the Royalty
-Now, that you are done with minting your SOTs, its time to sell them on OpenSea with some royalty. In order to do that, you need to create a new collection on OpenSea, chose the tokens that will be used to buy and sell the NFTs, define the royalty, like 2.5% in addition to OpenSea's 2.5%, which will make the contract owner receive a royalty of 2.5% on each sale of the NFT.
+Now, that you are done with minting your SOTs, its time to sell them on OpenSea with some royalty. In order to do that, you need to create a new collection on OpenSea Testnet (make sure you are connected to rinkeby testnet on your metamask wallet), choose the tokens that will be used to buy and sell the NFTs, define the royalty, like 2.5% in addition to OpenSea's 2.5%, which will make the contract owner receive a royalty of 2.5% on each sale of the NFT. After creating the collection, you need to move your NFTs to this collection.
 
 ![Defining the royalty](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632995848/images/royalty.png)
 

@@ -12,11 +12,13 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
     uint256 private _currentTokenId;
     uint256 private _currentSupply;
 
+    //No constructor in upgradeable contracts, replaced by initilize() function
     function initialize() public initializer{
-
+        
         __ERC721_init('Sot', "SOT");
         __Ownable_init();
 
+        //Minting 5 tokens initially
         for(uint i = 0; i<5; i++){
             mint(msg.sender);
         }
@@ -46,11 +48,13 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
         return string(bstr);
     }
 
+    //Modifier to check if the token against a tokenId exists or not
     modifier tokenExists(uint256 tokenId){
         require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
         _;
     }
 
+    //Modifier to check that the minting limit is not reached
     modifier withinMintingLimit(){
         require(_currentSupply < 1200000, "Minting limit reached!");
         _;
@@ -65,7 +69,7 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
         string memory baseURI = _baseURI();
 
         return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, uint2str(tokenId), ".json")) : "";
-        //tokenId.toString()
+
     }
 
     //overriding the default implementation of baseURI in ERC721Upgradeable
