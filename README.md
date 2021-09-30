@@ -28,27 +28,7 @@ To get started with this project, follow these steps:
 
 2. Run `npm install` in the root of the repo
 
-3. Run `npx hardhat compile` to get all the contracts compiled
-
-4. Run `npx hardhat test` to run all the tests
-
-5. Run `npx hardhat coverage` to know the testing coverage
-
-6. If you wish to use IPFS for NFT metadata and images, add a `.env` file in your root directory and add the following content init:
-    ```
-    PINATA_API_KEY=""
-    PINATA_API_SECRET=""
-    PINATA_ENDPOINT="https://api.pinata.cloud/pinning/pinFileToIPFS"
-    MNEMONIC="<Your Metamask mnemonic/phrase>"
-    ETH_CLIENT_URL="https://rinkeby.infura.io/v3/<Infura-Project-Id>"
-    ```
-   > **Please Note:**  Login to [Pinata Service](https://app.pinata.cloud/), click profile icon on the right, click on the API keys to know your pinata api key and secret. Sign Up on [Infura](https://infura.io/), create a project and get you project Id from there. Also, keep this .env file private as it contains sensitive data.   
-   
-    ![Pinata](https://static.slab.com/prod/uploads/7adb25ff/posts/images/J__0NjUkj_6BObi1Q4Q3eRe6.png)
-
-    ![Infura](https://www.trufflesuite.com/img/tutorials/infura/infura-project-details.png)
-
-7. Also, add a `secret.json` file in your root directory, where you'll store your wallet address, key and other sensitive data. The content should be similar to this:
+3. Also, add a `secret.json` file in your root directory, where you'll store your wallet address, key and other sensitive data. The content should be similar to this:
 
     ```
     {
@@ -61,8 +41,28 @@ To get started with this project, follow these steps:
         "deployedMsotAddress": "<Once you deploy MSOT, it will return an address, paste that here>"
     }
     ```
+4. Run `npx hardhat compile` to get all the contracts compiled
+
+5. Run `npx hardhat test` to run all the tests
+
+6. Run `npx hardhat coverage` to know the testing coverage
 
    > **Please Note:**  Deployed addresses are required because they are needed in upgradation. This file also needs to be kept private.
+
+
+7. [OPTIONAL] If you wish to use IPFS for NFT metadata and images, add a `.env` file in your root directory and add the following content init:
+    ```
+    PINATA_API_KEY=""
+    PINATA_API_SECRET=""
+    PINATA_ENDPOINT="https://api.pinata.cloud/pinning/pinFileToIPFS"
+    MNEMONIC="<Your Metamask mnemonic/phrase>"
+    ETH_CLIENT_URL="https://rinkeby.infura.io/v3/<Infura-Project-Id>"
+    ```
+   > **Please Note:**  Login to [Pinata Service](https://app.pinata.cloud/), click profile icon on the right, click on the API keys to know your pinata api key and secret. Sign Up on [Infura](https://infura.io/), create a project and get you project Id from there. Also, keep this .env file private as it contains sensitive data.   
+   
+    ![Pinata](https://static.slab.com/prod/uploads/7adb25ff/posts/images/J__0NjUkj_6BObi1Q4Q3eRe6.png)
+
+    ![Infura](https://www.trufflesuite.com/img/tutorials/infura/infura-project-details.png)
 
 8. Run `npx hardhat run scripts/<script-name>.js` to run any of the scripts
 
@@ -116,4 +116,4 @@ Now, that you are done with minting your SOTs, its time to sell them on OpenSea 
 
 ![Defining the royalty](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632995848/images/royalty.png)
 
-> **THAT'S IT! START TRADING!**
+> **THAT'S IT!  START TRADING!**
