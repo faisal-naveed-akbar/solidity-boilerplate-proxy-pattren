@@ -41,14 +41,13 @@ To get started with this project, follow these steps:
         "deployedMsotAddress": "<Once you deploy MSOT, it will return an address, paste that here>"
     }
     ```
+       > **Please Note:**  Deployed addresses are required because they are needed in upgradation, after the initial deployment. This file needs to be kept private.
+
 4. Run `npx hardhat compile` to get all the contracts compiled
 
 5. Run `npx hardhat test` to run all the tests
 
 6. Run `npx hardhat coverage` to know the testing coverage
-
-   > **Please Note:**  Deployed addresses are required because they are needed in upgradation. This file also needs to be kept private.
-
 
 7. [OPTIONAL] If you wish to use IPFS for NFT metadata and images, add a `.env` file in your root directory and add the following content init:
     ```
