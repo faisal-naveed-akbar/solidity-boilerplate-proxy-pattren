@@ -96,6 +96,22 @@ To get started with this project, follow these steps:
 
     `npx hardhat run scripts/UpgradeMsotProxy.js --network rinkeby`
 
-## Adding Metadata
+## Adding Metadata and Minting a new SOT
+Each SOT NFT is supposed to possess specific attributes. Like the SOT's size, location etc. In addition to that, it also has an associated image and a name which differentiates it from other SOTs. Metadata is a json file consisting that information. Now,how is this metadata file associated with each SOT? Well, the metadata is always off-chain, so it can be stored either on another blockchain like IPFS or on some cloud service like cloudinary. We have used the cloudinary service to store our metadata files. The OpenSea platform access the tokenURI function of the NFT and looks for the metadata file in the link that is returned. like in our case, it returns https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/X.json where X replaces the tokenID. like [this](https://res.cloudinary.com/dhxeeeqc8/raw/upload/v1632816504/SOTs/Metadata/0.json)
 
+So, in order to display an SOT's metadata on OpenSea, you need to upload the metadata file on some cloud and name it such that it matches the link returned by the tokenURI function when passed the token's Id.
 
+When you are done with uploading the new token's metadata, run the minting script as follows:
+
+`npx hardhat run scripts/mintSOT.js --network rinkeby`
+
+It will take some time, your token will be minted, and you will be able to view the new token on OpenSea with all its metadata.
+
+![SOT Metadata](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632994755/images/SOT_Metadata.png)
+
+## Defining the Royalty
+Now, that you are done with minting your SOTs, its time to sell them on OpenSea with some royalty. In order to do that, you need to create a new collection on OpenSea, chose the tokens that will be used to buy and sell the NFTs, define the royalty, like 2.5% in addition to OpenSea's 2.5%, which will make the contract owner receive a royalty of 2.5% on each sale of the NFT.
+
+![Defining the royalty](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632995848/images/royalty.png)
+
+> **That is it! Start trading!**
