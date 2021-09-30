@@ -116,4 +116,4 @@ Now, that you are done with minting your SOTs, its time to sell them on OpenSea 
 
 ![Defining the royalty](https://res.cloudinary.com/dhxeeeqc8/image/upload/v1632995848/images/royalty.png)
 
-> **That is it! Start trading!**
+> **THAT'S IT! START TRADING!**
