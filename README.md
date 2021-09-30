@@ -41,7 +41,7 @@ To get started with this project, follow these steps:
         "deployedMsotAddress": "<Once you deploy MSOT, it will return an address, paste that here>"
     }
     ```
-       > **Please Note:**  Deployed addresses are required because they are needed in upgradation, after the initial deployment. This file needs to be kept private.
+   > **Please Note:**  Deployed addresses are required because they are needed in upgradation, after the initial deployment. This file needs to be kept private.
 
 4. Run `npx hardhat compile` to get all the contracts compiled
 
