@@ -2,7 +2,6 @@ require('mocha')
 const assert = require('assert');
 const { expect } = require('chai');
 const hre = require('hardhat');
-const secret = require('../secret.json')
 Web3 = require("web3");
 web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 const {expectRevert} = require('@openzeppelin/test-helpers');
@@ -12,7 +11,7 @@ before('deploy', async function (){
     this.SotV2 = await ethers.getContractFactory('SOT2');
     this.proxy;
     this.upgraded_SOT;
-    
+    this.accounts = await hre.ethers.getSigners();
 });
 
 it('deploys the Proxy of the SOT Token', async function() {
@@ -93,24 +92,13 @@ it('should mint a new token and increment the token id and the supply', async fu
     this.timeout(500000)
     const previousId = await this.proxy.getCurrentTokenId();
     const previousSupply = await this.proxy.getTotalSupply();
-    await this.proxy.mint(secret.wallet_address);
+    await this.proxy.mint(this.accounts[0].address);
     const newId = await this.proxy.getCurrentTokenId();
     const newSupply = await this.proxy.getTotalSupply();
     assert.equal(web3.utils.toNumber(newId), web3.utils.toNumber(previousId) + 1)
     assert.equal(web3.utils.toNumber(newSupply), web3.utils.toNumber(previousSupply) + 1)
 
 })
-
-// it('should reject minting a new token if the minting limit is reached', async function () {
-
-//     this.timeout(500000)
-//     const previousSupply = await this.proxy.getTotalSupply();
-//     for(var i = 0; i< 1200000 - previousSupply; i++){
-//         await this.proxy.mint(secret.wallet_address);
-//     }
-//     await assert.rejects(() => this.proxy.mint(secret.wallet_address));
-
-// })
 
 
 it('should burn a token and decrement the supply', async function () {
@@ -128,6 +116,37 @@ it('should return the correct current supply of the NFTs', async function (){
     this.timeout(500000)
     const supply = await this.proxy.getTotalSupply();
     console.log("The current supply is of ", web3.utils.toNumber(supply), " SOTs");
+});
+
+it('should transfer the SOT and distribute the fees and the royalties correctly', async function (){
+    this.timeout(500000)
+    const tokenId = 0;
+    const previousOwner = await this.proxy.ownerOf(tokenId);
+    
+    this.Msot = await ethers.getContractFactory('MSOT');
+    this.msot_proxy = await hre.upgrades.deployProxy(this.Msot, {kind: 'uups'}); 
+    var done = await this.msot_proxy.increaseAllowance(this.accounts[0].address, 500);
+    var previousBalance = await this.msot_proxy.balanceOf(this.accounts[1].address);
+    await this.msot_proxy.transferFrom(this.accounts[0].address, this.accounts[1].address , 50);
+    var newBalance = await this.msot_proxy.balanceOf(this.accounts[1].address);
+    assert.notEqual(newBalance, previousBalance);
+    await this.msot_proxy.increaseAllowance(this.accounts[1].address, 500);
+    await this.proxy.sellMyNFT(this.accounts[0].address, this.accounts[1].address, tokenId, 0, this.msot_proxy.address, this.accounts[0].address);
+    const newOwner = await this.proxy.ownerOf(tokenId);
+    assert.notEqual(previousOwner, newOwner)
+    console.log("Previous Owner: ", previousOwner)
+    console.log("New Owner: ", newOwner)
+});
+
+it('should not include the royalties part if transferFrom function of the SOT is called directly, without calling sellMyNFT function', async function (){
+    this.timeout(500000)
+    const tokenId = 2;
+    const previousOwner = await this.proxy.ownerOf(tokenId);
+    await this.proxy.transferFrom(this.accounts[0].address, this.accounts[1].address, tokenId)
+    const newOwner = await this.proxy.ownerOf(tokenId);
+    assert.notEqual(previousOwner, newOwner)
+    console.log("Previous Owner: ", previousOwner)
+    console.log("New Owner: ", newOwner)
 });
 
 it("should return the string format of the passed integer", async function(){

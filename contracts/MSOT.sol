@@ -12,7 +12,7 @@ contract MSOT is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableUpgrad
     function initialize() public initializer{
         __ERC20_init('Msot', "MSOT");
         __Ownable_init();
-        _mint(msg.sender, 180000000 * 10 * decimals());
+        _mint(msg.sender, 10000000 * 10 * decimals());
     }
     
     function _authorizeUpgrade(address newImplementation) internal override onlyOwner{} 

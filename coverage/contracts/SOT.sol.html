@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>31/31</span>
+        <span class='fraction'>41/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">70% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>7/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>34/34</span>
+        <span class='fraction'>44/44</span>
       </div>
     </div>
   </div>
@@ -147,7 +147,52 @@
 102
 103
 104
-105</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,6 +210,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,6 +290,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,25 +333,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 &nbsp;
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-&nbsp;
+import "./Profit_Distributor.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 &nbsp;
-contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
+&nbsp;
+contract SOT is ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable, Profit_Distributor {
 &nbsp;
     uint256 private _currentTokenId;
     uint256 private _currentSupply;
+    uint public txFeeAmount;
+    address public originalOwner;
 &nbsp;
     //No constructor in upgradeable contracts, replaced by initilize() function
     function initialize() public initializer{
         
         __ERC721_init('Sot', "SOT");
         __Ownable_init();
+&nbsp;
+        //setting the original owner
+        originalOwner = _msgSender();
 &nbsp;
         //Minting 5 tokens initially
         for(uint i = 0; i&lt;5; i++){
@@ -345,6 +435,40 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
 &nbsp;
     }
 &nbsp;
+    function sellMyNFT(
+        address seller,
+        address buyer, 
+        uint256 tokenId,
+        uint256 txFee,
+        address erc20Token,
+        address platformOwner
+    ) public {
+&nbsp;
+        txFeeToken = erc20Token;
+        platform = platformOwner;
+        token = IERC20Upgradeable(txFeeToken); 
+        txFeeAmount = txFee;
+&nbsp;
+        transferFrom(seller, buyer, tokenId);
+    }
+&nbsp;
+    function transferFrom(
+        address seller, 
+        address buyer, 
+        uint256 tokenId
+    ) public override {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(
+        _isApprovedOrOwner(_msgSender(), tokenId), 
+        'ERC721: transfer caller is not owner nor approved'
+        );
+&nbsp;
+        //if transferFrom is called directly, without calling sellMyNFT, like OpenSea does, no profit distribution will work, it has to be managed on OpenSea itself
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(txFeeToken != address(0) &amp;&amp; platform != address(0)){
+            _distributeTxFee(seller, buyer, txFeeAmount, originalOwner);
+        }
+        _transfer(seller, buyer, tokenId);
+    }
+&nbsp;
     function getCurrentTokenId() public view returns (uint256 id){
         return _currentTokenId;
     }
@@ -352,7 +476,9 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
     function getTotalSupply() public view returns (uint256 id){
         return _currentSupply;
     }
-   
+&nbsp;
+    
+&nbsp;
 }
 &nbsp;
 &nbsp;</pre></td></tr>
@@ -361,7 +487,7 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Sep 30 2021 16:25:38 GMT+0500 (Pakistan Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Oct 05 2021 16:59:19 GMT+0500 (Pakistan Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

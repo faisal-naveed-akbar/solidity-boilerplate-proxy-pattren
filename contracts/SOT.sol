@@ -3,20 +3,26 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
-
+import "./Profit_Distributor.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
+
+contract SOT is ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable, Profit_Distributor {
 
     uint256 private _currentTokenId;
     uint256 private _currentSupply;
+    uint public txFeeAmount;
+    address public originalOwner;
 
     //No constructor in upgradeable contracts, replaced by initilize() function
     function initialize() public initializer{
         
         __ERC721_init('Sot', "SOT");
         __Ownable_init();
+
+        //setting the original owner
+        originalOwner = _msgSender();
 
         //Minting 5 tokens initially
         for(uint i = 0; i<5; i++){
@@ -92,6 +98,41 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
 
     }
 
+    //use this funciton to sell the NFTs, rather than the default transferFrom function of the NFT
+    function sellMyNFT(
+        address seller,
+        address buyer, 
+        uint256 tokenId,
+        uint256 txFee,//total fee including the royalty for the platform and the original owner
+        address erc20Token,//The address of the deployed MSOT, the ERC20 token, in which the buyer will pay
+        address platformOwner//The wallet address of the platform owner, so that royalties can be transferred to this account
+    ) public {
+
+        txFeeToken = erc20Token;
+        platform = platformOwner;
+        token = IERC20Upgradeable(txFeeToken); 
+        txFeeAmount = txFee;
+
+        transferFrom(seller, buyer, tokenId);
+    }
+
+    function transferFrom(
+        address seller, 
+        address buyer, 
+        uint256 tokenId
+    ) public override {
+        require(
+        _isApprovedOrOwner(_msgSender(), tokenId), 
+        'ERC721: transfer caller is not owner nor approved'
+        );
+
+        //if transferFrom is called directly, without calling sellMyNFT, like OpenSea does, no profit distribution will work, it has to be managed on OpenSea itself
+        if(txFeeToken != address(0) && platform != address(0)){
+            _distributeTxFee(seller, buyer, txFeeAmount, originalOwner);
+        }
+        _transfer(seller, buyer, tokenId);
+    }
+
     function getCurrentTokenId() public view returns (uint256 id){
         return _currentTokenId;
     }
@@ -99,6 +140,8 @@ contract SOT is Initializable, ERC721Upgradeable, UUPSUpgradeable, OwnableUpgrad
     function getTotalSupply() public view returns (uint256 id){
         return _currentSupply;
     }
-   
+
+    
+
 }
 

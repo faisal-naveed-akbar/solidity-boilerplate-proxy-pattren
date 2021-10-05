@@ -29,7 +29,7 @@ module.exports = {
       accounts: [secret.key]
     },
     rinkeby: {
-      url: secret.MSOT_PROJECT_RINKEBY, //Infura url with projectId
+      url: secret.SOT_PROJECT_RINKEBY, //Infura url with projectId
       accounts: [secret.key] // add the account that will deploy the contract (private key)
     }
      
