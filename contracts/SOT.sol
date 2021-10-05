@@ -99,11 +99,11 @@ contract SOT is ERC721Upgradeable, UUPSUpgradeable, OwnableUpgradeable, Profit_D
     }
 
     //use this funciton to sell the NFTs, rather than the default transferFrom function of the NFT
-    function sellMyNFT(
+    function sellNFT(
         address seller,
         address buyer, 
         uint256 tokenId,
-        uint256 txFee,//total fee including the royalty for the platform and the original owner
+        uint256 txFee,//total fee including the royalty for the platform and the original owner, in MSOTs
         address erc20Token,//The address of the deployed MSOT, the ERC20 token, in which the buyer will pay
         address platformOwner//The wallet address of the platform owner, so that royalties can be transferred to this account
     ) public {

@@ -131,7 +131,7 @@ it('should transfer the SOT and distribute the fees and the royalties correctly'
     var newBalance = await this.msot_proxy.balanceOf(this.accounts[1].address);
     assert.notEqual(newBalance, previousBalance);
     await this.msot_proxy.increaseAllowance(this.accounts[1].address, 500);
-    await this.proxy.sellMyNFT(this.accounts[0].address, this.accounts[1].address, tokenId, 0, this.msot_proxy.address, this.accounts[0].address);
+    await this.proxy.sellNFT(this.accounts[0].address, this.accounts[1].address, tokenId, 0, this.msot_proxy.address, this.accounts[0].address);
     const newOwner = await this.proxy.ownerOf(tokenId);
     assert.notEqual(previousOwner, newOwner)
     console.log("Previous Owner: ", previousOwner)
